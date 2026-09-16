@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>더조은목재 | 목문짝 제조 전문기업</title>
+<style>
+  :root{
+    --brand:#153356; --brand-2:#1F5C99; --brand-soft:#EAF1F9;
+    --wood:#9C6B3E; --wood-soft:#F6EEE2; --wood-line:#E7D8BF;
+    --bg:#FBFAF7; --panel:#FFFFFF; --ink:#221F1B; --muted:#726C61; --line:#E9E4DA;
+    --ok:#2E8B57; --ok-soft:#E8F5EC;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Malgun Gothic","맑은 고딕",sans-serif;line-height:1.6;}
+  a{color:inherit;}
+  img{max-width:100%;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- topbar ---------- */
+  .topbar{background:var(--brand);color:#DCE7F5;font-size:12.5px;}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding:6px 24px;flex-wrap:wrap;gap:6px;}
+  .topbar a{text-decoration:none;color:#DCE7F5;}
+  .topbar .tel{font-weight:700;color:#fff;}
+
+  /* ---------- header ---------- */
+  header.site{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;}
+  header.site .wrap{display:flex;align-items:center;gap:28px;padding:14px 24px;}
+  .logo{display:flex;align-items:center;gap:10px;flex:none;text-decoration:none;}
+  .logo svg{flex:none;}
+  .logo .name{font-size:17px;font-weight:800;color:var(--brand);letter-spacing:-.01em;}
+  .logo .sub{font-size:10px;color:var(--muted);letter-spacing:.06em;margin-top:-2px;}
+  nav.main{display:flex;gap:4px;margin-left:8px;flex-wrap:wrap;}
+  nav.main a{text-decoration:none;color:#3A362F;font-size:14px;font-weight:600;padding:10px 12px;border-radius:8px;}
+  nav.main a:hover{background:var(--brand-soft);color:var(--brand-2);}
+  .head-cta{margin-left:auto;display:flex;gap:8px;flex:none;}
+  .btn{display:inline-flex;align-items:center;gap:7px;padding:10px 16px;border-radius:8px;font-size:13.5px;font-weight:700;text-decoration:none;border:1px solid transparent;white-space:nowrap;}
+  .btn-primary{background:var(--brand-2);color:#fff;}
+  .btn-primary:hover{background:var(--brand);}
+  .btn-ghost{background:#fff;color:var(--brand);border-color:var(--brand-2);}
+  .btn-ghost:hover{background:var(--brand-soft);}
+  .btn-wood{background:var(--wood);color:#fff;}
+  .btn-wood:hover{background:#875A32;}
+
+  /* ---------- hero ---------- */
+  .hero{background:linear-gradient(180deg,#F3F0EA 0%,var(--bg) 100%);padding:56px 0 48px;border-bottom:1px solid var(--line);}
+  .hero .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;}
+  .badges-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+  .badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;background:var(--ok-soft);color:#1F6E45;border:1px solid #C9E7D3;}
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:#2E8B57;}
+  h1{font-size:34px;line-height:1.35;margin:0 0 16px;font-weight:800;color:var(--brand);letter-spacing:-.02em;}
+  h1 em{color:var(--wood);font-style:normal;}
+  .hero p.lead{font-size:15.5px;color:var(--muted);max-width:520px;margin:0 0 26px;}
+  .hero .cta{display:flex;gap:10px;flex-wrap:wrap;}
+  .hero-panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(21,51,86,.08);}
+  .hero-panel h3{margin:0 0 4px;font-size:14px;color:var(--muted);font-weight:700;}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+  .stat{background:var(--wood-soft);border:1px solid var(--wood-line);border-radius:10px;padding:12px 14px;}
+  .stat .n{font-size:20px;font-weight:800;color:var(--wood);}
+  .stat .l{font-size:11.5px;color:#8A6B45;margin-top:1px;}
+
+  section{padding:56px 0;}
+  section.tight{padding:40px 0;}
+  .eyebrow{font-size:12.5px;font-weight:700;color:var(--wood);letter-spacing:.05em;margin-bottom:8px;}
+  h2{font-size:25px;margin:0 0 8px;font-weight:800;color:var(--brand);}
+  p.section-lead{font-size:14px;color:var(--muted);max-width:640px;margin:0 0 30px;}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;}
+  .card h3{margin:0 0 8px;font-size:16px;color:var(--brand);}
+  .card p{margin:0;font-size:13.5px;color:var(--muted);}
+  .icn{width:42px;height:42px;border-radius:11px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px;}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .list-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px;}
+  .list-card.make{border-top:4px solid var(--wood);}
+  .list-card.buy{border-top:4px solid var(--brand-2);}
+  .list-card h3{margin:0 0 4px;font-size:17px;color:var(--ink);}
+  .list-card .tag{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px;}
+  .list-card.make .tag{background:var(--wood-soft);color:var(--wood);}
+  .list-card.buy .tag{background:var(--brand-soft);color:var(--brand-2);}
+  .chip-wrap{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
+  .chip{font-size:12.5px;background:#F4F2EC;border:1px solid var(--line);border-radius:20px;padding:5px 12px;}
+
+  .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .cat{display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 10px;text-align:center;}
+  .cat:hover{border-color:var(--brand-2);box-shadow:0 6px 16px rgba(31,92,153,.10);}
+  .cat .e{font-size:24px;}
+  .cat .t{font-size:12.5px;font-weight:700;color:#3A362F;}
+
+  .case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .case .ph{height:140px;background:linear-gradient(135deg,var(--wood-soft),#EFE6D6);display:flex;align-items:center;justify-content:center;color:#B39868;font-size:12.5px;font-weight:700;border-bottom:1px solid var(--wood-line);}
+  .case .body{padding:16px 18px;}
+  .case .loc{font-size:11px;color:var(--wood);font-weight:700;margin-bottom:3px;}
+  .case h4{margin:0 0 6px;font-size:15px;}
+  .case p{margin:0;font-size:12.5px;color:var(--muted);}
+
+  .review-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .review{background:var(--panel);border:1px dashed #D8D2C6;border-radius:14px;padding:20px;text-align:center;color:var(--muted);}
+  .review .star{color:#E3C36B;font-size:15px;letter-spacing:2px;margin-bottom:8px;}
+  .review p{margin:0;font-size:13px;}
+  .review-cta{margin-top:22px;background:var(--brand-soft);border:1px solid #CFE0F2;border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .review-cta p{margin:0;font-size:13.5px;color:#1F4A73;flex:1;min-width:220px;}
+
+  .cust-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .cust-row .chip{background:var(--panel);border:1px solid var(--line);padding:9px 16px;font-size:13.5px;font-weight:600;}
+
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .info-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px;}
+  .info-row{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px;}
+  .info-row:last-child{border-bottom:none;}
+  .info-row .k{flex:none;width:88px;color:var(--muted);font-weight:600;}
+  .map-card{background:var(--wood-soft);border:1px solid var(--wood-line);border-radius:14px;padding:26px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:12px;}
+  .map-card .pin{font-size:26px;}
+
+  footer.site{background:var(--brand);color:#B9C9DD;padding:36px 0 22px;margin-top:20px;}
+  footer.site .wrap{display:flex;flex-direction:column;gap:16px;}
+  .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+  .foot-brand{font-size:15px;font-weight:800;color:#fff;}
+  .foot-sns{display:flex;gap:10px;}
+  .foot-sns a{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:13px;color:#DCE7F5;}
+  .foot-sns a:hover{background:rgba(255,255,255,.18);}
+  .foot-legal{font-size:11.5px;line-height:1.9;color:#8FA4C0;border-top:1px solid rgba(255,255,255,.12);padding-top:16px;}
+  .foot-links{display:flex;gap:14px;font-size:12px;flex-wrap:wrap;}
+  .foot-links a{text-decoration:none;color:#B9C9DD;}
+  .foot-links a:hover{color:#fff;}
+
+  @media (max-width:860px){
+    nav.main{display:none;}
+    .hero .grid{grid-template-columns:1fr;}
+    .grid3,.grid4,.split,.cat-grid,.case-grid,.review-wrap,.contact-grid{grid-template-columns:repeat(2,1fr);}
+    h1{font-size:27px;}
+  }
+  @media (max-width:560px){
+    .grid3,.grid4,.split,.cat-grid,.case-grid,.review-wrap,.contact-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>평일 07:00–18:00 · 토요일 07:00–14:00 · 일요일·공휴일 휴무</span>
+    <a class="tel" href="tel:031-994-2178">📞 031-994-2178</a>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <svg width="34" height="34" viewBox="0 0 34 34"><rect width="34" height="34" rx="8" fill="#153356"/><path d="M17 8 L26 16 H23 V25 H11 V16 H8 Z" fill="#fff"/></svg>
+      <span><span class="name">더조은목재</span><br><span class="sub">THE FINE WOOD</span></span>
+    </a>
+    <nav class="main">
+      <a href="#make">제조·제품</a>
+      <a href="#trust">인증·신뢰</a>
+      <a href="#case">시공사례</a>
+      <a href="#review">고객후기</a>
+      <a href="#about">회사소개</a>
+    </nav>
+    <div class="head-cta">
+      <a class="btn btn-ghost" href="https://thefinewood.co.kr" target="_blank" rel="noopener">기존 쇼핑몰</a>
+      <a class="btn btn-primary" href="https://thefinewood.co.kr/bbs/write.php?bo_table=estimate" target="_blank" rel="noopener">온라인 견적 문의</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap grid">
+    <div>
+      <div class="badges-row">
+        <span class="badge"><span class="dot"></span>조달청 직접생산확인</span>
+        <span class="badge"><span class="dot"></span>벤처기업 인증</span>
+        <span class="badge"><span class="dot"></span>사업자등록 833-81-03352</span>
+      </div>
+      <h1>목문짝을 <em>직접 만드는</em><br>목재·건축자재 전문기업</h1>
+      <p class="lead">문틀·몰딩·3연동도어·현관문·원목가구·키친까지 직접 제조합니다.
+      조달청 직접생산확인증명을 바탕으로 공공조달부터 건설·인테리어 현장까지 자재와 시공을 함께 책임집니다.</p>
+      <div class="cta">
+        <a class="btn btn-wood" href="tel:031-994-2178">📞 전화 상담 031-994-2178</a>
+        <a class="btn btn-ghost" href="#make">제조 역량 보기 ↓</a>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <h3>더조은목재를 숫자로 보면</h3>
+      <div class="stat-grid">
+        <div class="stat"><div class="n">12명</div><div class="l">공동대표 2 + 직원 10</div></div>
+        <div class="stat"><div class="n">직접 제조</div><div class="l">목문·원목가구·키친</div></div>
+        <div class="stat"><div class="n">공공조달</div><div class="l">조달청 직접생산확인</div></div>
+        <div class="stat"><div class="n">B2B 전문</div><div class="l">건설·인테리어·설계사</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trust">
+  <div class="wrap">
+    <div class="eyebrow">인증 · 신뢰</div>
+    <h2>말이 아니라 자격으로 증명합니다</h2>
+    <p class="section-lead">아무 업체나 받을 수 없는 자격입니다. 협력업체를 고를 때 가장 먼저 확인하시는 항목이기도 합니다.</p>
+    <div class="grid3">
+      <div class="card">
+        <div class="icn">🏛️</div>
+        <h3>조달청 직접생산확인증명</h3>
+        <p>공장과 설비를 실사받아 직접 제조한다는 사실을 국가가 확인한 자격입니다. 관급 목문·도어 납품이 가능합니다.</p>
+      </div>
+      <div class="card">
+        <div class="icn">🚀</div>
+        <h3>벤처기업 인증</h3>
+        <p>기술력과 성장성을 인정받은 벤처기업입니다.</p>
+      </div>
+      <div class="card">
+        <div class="icn">🧾</div>
+        <h3>통신판매업 신고</h3>
+        <p>2025-고양일산동-0468호 · 사업자등록번호 833-81-03352</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="make" style="background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="eyebrow">제조 · 제품</div>
+    <h2>직접 만드는 것과, 엄선해서 들여오는 것</h2>
+    <p class="section-lead">목문짝 제조가 핵심 사업입니다. 자체 생산이 어려운 자재는 검증된 곳에서 매입·수입해 함께 공급합니다.</p>
+    <div class="split">
+      <div class="list-card make">
+        <span class="tag">직접 제조</span>
+        <h3>목문짝 · 원목가구 · 키친</h3>
+        <div class="chip-wrap">
+          <span class="chip">목문짝</span><span class="chip">문틀</span><span class="chip">몰딩</span>
+          <span class="chip">3연동도어</span><span class="chip">현관문</span><span class="chip">원목 도어</span>
+          <span class="chip">원목 가구</span><span class="chip">키친(주방가구)</span>
+        </div>
+      </div>
+      <div class="list-card buy">
+        <span class="tag">매입 · 수입 유통</span>
+        <h3>건축자재 전반</h3>
+        <div class="chip-wrap">
+          <span class="chip">샷시</span><span class="chip">바닥재</span><span class="chip">단열재</span><span class="chip">외장재</span>
+          <span class="chip">고재</span><span class="chip">집성판재/각재</span><span class="chip">합판</span>
+          <span class="chip">방부목/천연데크재</span><span class="chip">도마재</span><span class="chip">원목마루/계단재</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cat-grid" style="margin-top:24px;">
+      <a class="cat" href="https://thefinewood.co.kr/shop/list.php?ca_id=k0" target="_blank" rel="noopener"><span class="e">🚪</span><span class="t">몰딩/도어</span></a>
+      <a class="cat" href="https://thefinewood.co.kr/shop/list.php?ca_id=k0" target="_blank" rel="noopener"><span class="e">🪑</span><span class="t">가구류</span></a>
+      <a class="cat" href="https://thefinewood.co.kr/shop/list.php?ca_id=k0" target="_blank" rel="noopener"><span class="e">🧱</span><span class="t">석고/불연재</span></a>
+      <a class="cat" href="https://thefinewood.co.kr/shop/list.php?ca_id=k0" target="_blank" rel="noopener"><span class="e">🎨</span><span class="t">마감도료</span></a>
+      <a class="cat" href="https://thefinewood.co.kr/shop/list.php?ca_id=k0" target="_blank" rel="noopener"><span class="e">🪵</span><span class="t">고재</span></a>
+      <a class="cat" href="https://thefinewood.co.kr/shop/list.php?ca_id=k0" target="_blank" rel="noopener"><span class="e">📐</span><span class="t">집성판재/각재</span></a>
+      <a class="cat" href="https://thefinewood.co.kr/shop/list.php?ca_id=k0" target="_blank" rel="noopener"><span class="e">🟫</span><span class="t">합판</span></a>
+      <a class="cat" href="https://thefinewood.co.kr/shop/list.php?ca_id=k0" target="_blank" rel="noopener"><span class="e">🌲</span><span class="t">방부목/데크재</span></a>
+    </div>
+    <p style="text-align:center;margin-top:16px;"><a class="btn btn-ghost" href="https://thefinewood.co.kr/shop/list.php?ca_id=k0" target="_blank" rel="noopener">전체 자재별 상품 보기 (기존 쇼핑몰) →</a></p>
+  </div>
+</section>
+
+<section id="case">
+  <div class="wrap">
+    <div class="eyebrow">시공 사례</div>
+    <h2>자재만 파는 게 아니라, 현장까지 책임집니다</h2>
+    <p class="section-lead">실제 진행한 현장입니다. 사진은 담당자가 현장 사진을 올리면 바로 채워집니다 — 지금은 자리만 만들어 뒀습니다.</p>
+    <div class="case-grid">
+      <div class="case">
+        <div class="ph">📷 시공 사진 준비 중</div>
+        <div class="body">
+          <div class="loc">성수동 · 호텔</div>
+          <h4>성수동 호텔 시공</h4>
+          <p>목문·도어 등 자재 납품 및 현장 시공</p>
+        </div>
+      </div>
+      <div class="case">
+        <div class="ph">📷 시공 사진 준비 중</div>
+        <div class="body">
+          <div class="loc">한국항공대학교</div>
+          <h4>물품 납품 및 시공</h4>
+          <p>교육기관 대상 자재 납품·시공 계약 진행</p>
+        </div>
+      </div>
+      <div class="case">
+        <div class="ph">📷 시공 사진 준비 중</div>
+        <div class="body">
+          <div class="loc">일산 직업능력개발원</div>
+          <h4>인테리어 리모델링 공사</h4>
+          <p>전체 공종 견적부터 시공까지 진행</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="review" style="background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="eyebrow">고객 후기</div>
+    <h2>솔직하게 — 아직 쌓인 후기가 없습니다</h2>
+    <p class="section-lead">숨기지 않겠습니다. 납품·시공이 끝난 고객님께 후기를 부탁드리는 절차를 이제 막 시작합니다.</p>
+    <div class="review-wrap">
+      <div class="review"><div class="star">★★★★★</div><p>첫 번째 후기를<br>기다리고 있습니다</p></div>
+      <div class="review"><div class="star">★★★★★</div><p>납품·시공이 끝나면<br>이 자리에 남겨주세요</p></div>
+      <div class="review"><div class="star">★★★★★</div><p>진짜 후기만<br>싣겠습니다</p></div>
+    </div>
+    <div class="review-cta">
+      <p><b>거래처분들께:</b> 납품·시공이 끝난 뒤 한 줄 후기를 남겨주시면 이 자리와 구글 프로필에 함께 싣겠습니다.</p>
+      <a class="btn btn-primary" href="tel:031-994-2178">후기 남기기 문의</a>
+    </div>
+  </div>
+</section>
+
+<section id="customers" class="tight">
+  <div class="wrap">
+    <div class="eyebrow">주요 고객</div>
+    <h2>이런 곳과 함께 일합니다</h2>
+    <div class="cust-row">
+      <span class="chip">인테리어업체</span>
+      <span class="chip">건설업체</span>
+      <span class="chip">시공업체</span>
+      <span class="chip">건축설계사</span>
+      <span class="chip">공공기관 (조달청 · 나라장터)</span>
+      <span class="chip">일반소비자</span>
+    </div>
+  </div>
+</section>
+
+<section id="about" style="background:var(--wood-soft);border-top:1px solid var(--wood-line);">
+  <div class="wrap">
+    <div class="eyebrow">회사소개</div>
+    <h2>주식회사 더조은목재</h2>
+    <p class="section-lead">조용기 · 정성환 공동대표가 이끄는 목재·건축자재 전문기업입니다. 목문짝 제조를 중심으로, 상인의 생명은 신용이라는 마음으로 함께하겠습니다.</p>
+    <div class="contact-grid">
+      <div class="info-card">
+        <div class="info-row"><span class="k">대표자</span><span>조용기, 정성환 (공동대표)</span></div>
+        <div class="info-row"><span class="k">사업자등록</span><span>833-81-03352</span></div>
+        <div class="info-row"><span class="k">통신판매업</span><span>2025-고양일산동-0468호</span></div>
+        <div class="info-row"><span class="k">주소</span><span>경기도 고양시 일산동구 고봉로 531번길 8</span></div>
+        <div class="info-row"><span class="k">전화</span><span><a href="tel:031-994-2178">031-994-2178</a> (Fax 031-994-1711)</span></div>
+        <div class="info-row"><span class="k">이메일</span><span>thefinewood@naver.com</span></div>
+        <div class="info-row"><span class="k">운영시간</span><span>평일 07:00–18:00 · 토요일 07:00–14:00</span></div>
+      </div>
+      <div class="map-card">
+        <div class="pin">📍</div>
+        <div>
+          <div style="font-weight:700;margin-bottom:4px;">경기도 고양시 일산동구<br>고봉로 531번길 8</div>
+          <div style="font-size:12.5px;color:#8A6B45;">지도 앱에서 길찾기를 바로 여실 수 있습니다.</div>
+        </div>
+        <a class="btn btn-wood" href="https://map.naver.com/p/search/경기도%20고양시%20일산동구%20고봉로%20531번길%208" target="_blank" rel="noopener">네이버 지도에서 보기 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">더조은목재 THE FINE WOOD</div>
+        <div style="font-size:12.5px;margin-top:4px;">031-994-2178 · 경기도 고양시 일산동구 고봉로 531번길 8</div>
+      </div>
+      <div class="foot-sns">
+        <a href="https://www.instagram.com/thefinewood_/" target="_blank" rel="noopener" title="인스타그램">IG</a>
+        <a href="https://blog.naver.com/thefinewood" target="_blank" rel="noopener" title="네이버블로그">블</a>
+        <a href="https://thefinewood.co.kr" target="_blank" rel="noopener" title="기존 쇼핑몰">몰</a>
+      </div>
+    </div>
+    <div class="foot-links">
+      <a href="https://thefinewood.co.kr/bbs/board.php?bo_table=notice" target="_blank" rel="noopener">공지사항</a>
+      <a href="https://thefinewood.co.kr/bbs/board.php?bo_table=delivery" target="_blank" rel="noopener">배송문의</a>
+      <a href="https://thefinewood.co.kr/bbs/write.php?bo_table=estimate" target="_blank" rel="noopener">온라인견적</a>
+      <a href="https://thefinewood.co.kr" target="_blank" rel="noopener">기존 쇼핑몰</a>
+    </div>
+    <div class="foot-legal">
+      법인명(상호) : 주식회사 더조은목재 &nbsp;·&nbsp; 대표자 : 조용기, 정성환 &nbsp;·&nbsp; 사업자등록번호 : 833-81-03352<br>
+      통신판매업 신고 : 2025-고양일산동-0468호 &nbsp;·&nbsp; 전화 : 031-994-2178 &nbsp;·&nbsp; 팩스 : 031-994-1711 &nbsp;·&nbsp; 이메일 : thefinewood@naver.com<br>
+      Copyright ⓒ 주식회사 더조은목재. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
