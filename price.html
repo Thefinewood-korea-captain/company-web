@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>단가표 | 더조은목재</title>
+<style>
+  :root{
+    --brand:#153356; --brand-2:#1F5C99; --brand-soft:#EAF1F9;
+    --wood:#9C6B3E; --wood-soft:#F6EEE2; --wood-line:#E7D8BF;
+    --bg:#FBFAF7; --panel:#FFFFFF; --ink:#221F1B; --muted:#726C61; --line:#E9E4DA;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Malgun Gothic","맑은 고딕",sans-serif;line-height:1.6;}
+  a{color:inherit;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px;}
+
+  .topbar{background:var(--brand);color:#DCE7F5;font-size:12.5px;}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding:6px 24px;flex-wrap:wrap;gap:6px;}
+  .topbar a{text-decoration:none;color:#DCE7F5;}
+  .topbar .tel{font-weight:700;color:#fff;}
+
+  header.site{background:#fff;border-bottom:1px solid var(--line);}
+  header.site .wrap{display:flex;align-items:center;gap:16px;padding:14px 24px;flex-wrap:wrap;}
+  .logo{display:flex;align-items:center;gap:10px;flex:none;text-decoration:none;}
+  .logo .name{font-size:17px;font-weight:800;color:var(--brand);letter-spacing:-.01em;}
+  .logo .sub{font-size:10px;color:var(--muted);letter-spacing:.06em;margin-top:-2px;}
+  .back{margin-left:auto;font-size:13px;font-weight:700;color:var(--brand-2);text-decoration:none;}
+  .back:hover{text-decoration:underline;}
+
+  .page-head{padding:34px 0 8px;}
+  .eyebrow{font-size:12.5px;font-weight:700;color:var(--wood);letter-spacing:.05em;margin-bottom:8px;}
+  h1{font-size:26px;margin:0 0 8px;font-weight:800;color:var(--brand);}
+  p.lead{font-size:13.5px;color:var(--muted);max-width:640px;margin:0 0 20px;}
+
+  .notice{background:var(--wood-soft);border:1px solid var(--wood-line);border-radius:12px;padding:14px 18px;font-size:13px;color:#6B4A24;margin-bottom:22px;display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;}
+  .notice b{color:#4A3013;}
+  .notice .tel{margin-left:auto;flex:none;}
+  .btn{display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;}
+  .btn-wood{background:var(--wood);color:#fff;}
+  .btn-wood:hover{background:#875A32;}
+  .btn-ghost{background:#fff;color:var(--brand);border:1px solid var(--brand-2);}
+  .btn-ghost:hover{background:var(--brand-soft);}
+
+  .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px;}
+  .toolbar input[type=search],.toolbar select{border:1px solid #DCD7CC;border-radius:8px;padding:9px 12px;font-size:13.5px;background:#fff;font-family:inherit;}
+  .toolbar input[type=search]{flex:1;min-width:180px;}
+  .cnt{font-size:12.5px;color:var(--muted);white-space:nowrap;}
+
+  .table-wrap{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel);margin-bottom:40px;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  thead th{position:sticky;top:0;background:#F4F2EE;color:#6B6760;font-size:11.5px;font-weight:700;text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);}
+  th.num,td.num{text-align:right;}
+  tbody td{padding:10px 14px;border-bottom:1px solid #F0EDE7;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:#FCFBF8;}
+  td.grp{font-weight:700;color:var(--brand);white-space:nowrap;}
+  td.price{font-weight:800;color:var(--wood);font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .empty{padding:40px;text-align:center;color:var(--muted);}
+
+  footer.site{background:var(--brand);color:#B9C9DD;padding:26px 0;font-size:12px;text-align:center;}
+
+  @media (max-width:560px){
+    thead th:nth-child(3),tbody td:nth-child(3){display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>평일 07:00–18:00 · 토요일 07:00–14:00 · 일요일·공휴일 휴무</span>
+    <a class="tel" href="tel:031-994-2178">📞 031-994-2178</a>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="index.html">
+      <svg width="30" height="30" viewBox="0 0 34 34"><rect width="34" height="34" rx="8" fill="#153356"/><path d="M17 8 L26 16 H23 V25 H11 V16 H8 Z" fill="#fff"/></svg>
+      <span><span class="name">더조은목재</span><br><span class="sub">THE FINE WOOD</span></span>
+    </a>
+    <a class="back" href="index.html">← 홈으로</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="page-head">
+    <div class="eyebrow">단가표</div>
+    <h1>자재별 판매가를 한눈에 확인하세요</h1>
+    <p class="lead">품목·규격을 검색하거나 자재군을 선택해서 찾아보세요. 대량 구매나 현장 조건에 따라 별도 협의가 가능합니다.</p>
+  </div>
+
+  <div class="notice">
+    <span><b>2025년 12월 기준 가격입니다.</b> 원자재 시세에 따라 수시로 바뀔 수 있으니, 정확한 최신 가격과 재고는 주문 전 전화로 확인해 주세요.</span>
+    <a class="tel btn btn-wood" href="tel:031-994-2178">📞 031-994-2178</a>
+  </div>
+
+  <div class="toolbar">
+    <input type="search" id="q" placeholder="품목·규격 검색 (예: 합판, MDF, 방부목)">
+    <select id="fGroup"><option value="">자재군 전체</option></select>
+    <span class="cnt" id="cnt"></span>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>자재군</th><th>규격</th><th>단위</th><th class="num">판매가</th></tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<footer class="site">
+  <div class="wrap">더조은목재 THE FINE WOOD · 031-994-2178 · 경기도 고양시 일산동구 고봉로 531번길 8</div>
+</footer>
+
+<script>
+/* [자재군, 규격, 단위, 판매가] — 원가·매입처는 이 페이지에 절대 포함하지 않는다 */
+const ITEMS = [
+["합판(4*8)","5T 알비쟈","장",6864],["합판(4*8)","8.5T 알비쟈","장",11880],["합판(4*8)","9T(수입A)","장",14883],
+["합판(4*8)","미송합판(유절)9T","장",20900],["합판(4*8)","12T(수입A)","장",19965],["합판(4*8)","베트남(A)12T","장",13530],
+["합판(4*8)","태고합판12T","장",19800],["합판(4*8)","내수합판12T","장",21560],["합판(4*8)","미송합판(유절)12T","장",28050],
+["합판(4*8)","베트남(A)15T","장",17600],["합판(4*8)","18T(수입AA)","장",37510],
+["MDF(4*8)","6T","장",7282],["MDF(4*8)","9T","장",8987],["MDF(4*8)","12T","장",12078],["MDF(4*8)","15T","장",16335],["MDF(4*8)","18T","장",17578],
+["방부목각재","38*38*3600","본",4224],["방부목각재","38*89*3600","본",8448],["방부목각재","38*140*3600","본",12936],["방부목각재","89*89*3600","본",25080],
+["방부목 데크재","15*95*3600","본",4080],["방부목 데크재","20*120*3600","본",5401],["방부목 데크재","25*140*3600","본",7799],
+["히노끼루바8자","10*100*2400","본",22176],["히노끼루바12자","10*100*3600","본",34848],
+["열반사단열재","5T(단면)45M","롤",44000],["열반사단열재","6T(양면)50M","롤",70400],["열반사단열재","10T(양면)25M","롤",42900],
+["MDF UV도장(4*8)","4.5T (단면)","장",11440],["MDF UV도장(4*8)","6T (단면)","장",13860],["MDF UV도장(4*8)","9T 단면","장",17380],
+["MDF UV도장(4*8)","9T 양면","장",21670],["MDF UV도장(4*8)","12T 단면","장",21560],["MDF UV도장(4*8)","12T 양면","장",26070],
+["MDF UV도장(4*8)","15T (양면)","장",30910],["MDF UV도장(4*8)","18T (양면)","장",34430],
+["합성데크재","20T*140*2400","본",11495],["합성데크재","20T*140*3600","본",12826],
+["그라스울","450*1000*50t*28매","묶음",44715],["라왕각재","27*27*3600","본",2420],["골판지","1.1*40M","롤",14080],["열반사 벽지","1M*20M","롤",38500],
+["코아합판","4*8*15T알비자","장",19580],["코아합판","4*8*18T 라왕","장",32450],["코아합판","4*8*18T알비자","장",21890],
+["OSB합판","4*8(12T)건축용","장",12100],["석고텍스","300*600*9.5T","장",17600],["집텍스","300*600*9.5T","장",17820],
+["마이톤","300*600*9T","장",31845],["마이톤","300*600*12T","장",23881],
+["소송각재","다루끼8자 AA","본",14520],["소송각재","다루끼12자 AA","본",19800],["소송각재","투바이12자 AA","본",22770],
+["소송각재","투바이12자 집성(핑거)","본",22011],["소송각재","LVL합판다루끼","본",14520],["소송각재","폼다루끼12자","본",2674],
+["멀바우집성판","12T*900*2400","장",39785],["멀바우집성판","15T*900*2400","장",48649],["멀바우집성판","18T*900*2400","장",54487],
+["석고보드","일반석고3*6 (국산)","장",3685],["석고보드","방수석고3*6 (국산)","장",6248],["석고보드","방화석고3*6(12.5T)국산","장",6677],
+["자작합판(4*8)","4T(AA)","장",25850],["자작합판(4*8)","6T(AA)","장",31900],["자작합판(4*8)","9T(AA)","장",39600],
+["자작합판(4*8)","12T(AA)","장",51150],["자작합판(4*8)","15T(AA)","장",58300],
+["이보드","13T(도배용)","장",9350],["이보드","23T(도배용)","장",13915],["이보드","33T(도배용)","장",15400],["이보드","13T(도장용)","장",9020],
+["고무집성판","4*8 (12T)탑핑거","장",41259],["고무집성판","4*8 (15T)탑핑거","장",47890],["고무집성판","4*8 (18T)탑핑거","장",53048],
+["뉴송집성판","4*8(18T)탑핑거","장",45090],["뉴송계단판","38*300*3600","장",41307],
+["아이소핑크","10T","장",2255],["아이소핑크","20T","장",3795],["아이소핑크","30T","장",4785],["아이소핑크","50T","장",7370],["아이소핑크","100T","장",14740],
+["구조목","19*90*3600","본",6336],["구조목","19*140*3600","본",9504],["구조목","19*185*3600","본",15312],["구조목","19*235*3600","본",16680],
+["구조목","19*285*3600","본",22200],["구조목","38*38*3600","본",4488],["구조목","38*90*3600","본",9768],["구조목","38*140*3600","본",14256],
+["구조목","38*184*3600","본",19800],["구조목","38*240*3600","본",30360],["구조목","38*285*3600","본",35640],["구조목","90*90*3600","본",27445],
+["런너65(KS)","67*3000=M","본",3333],["스터드65(KS)","65*3000=M","본",3828],["엠바(KS)","0.5*50*19*4000","본",1936],["케링(KS)","1.2*38*12*4000","본",2530],
+["요꼬합판","4*1220*2440 (일반)","장",11550],["요꼬합판","4*1220*2440 (라왕,고급)","장",13750],
+["스티로폼","100T","장",2145],["스티로폼","50T","장",3575]
+];
+
+const won = n => n.toLocaleString('ko-KR') + '원';
+const groups = [...new Set(ITEMS.map(i=>i[0]))].sort((a,b)=>a.localeCompare(b,'ko'));
+document.getElementById('fGroup').innerHTML = '<option value="">자재군 전체</option>' + groups.map(g=>`<option>${g}</option>`).join('');
+
+function render(){
+  const q = document.getElementById('q').value.trim().toLowerCase();
+  const g = document.getElementById('fGroup').value;
+  const rows = ITEMS.filter(i => (!g || i[0]===g) && (!q || (i[0]+' '+i[1]).toLowerCase().includes(q)));
+  document.getElementById('cnt').textContent = `${rows.length}개 품목`;
+  document.getElementById('tbody').innerHTML = rows.length
+    ? rows.map(i=>`<tr><td class="grp">${i[0]}</td><td>${i[1]}</td><td>${i[2]}</td><td class="num price">${won(i[3])}</td></tr>`).join('')
+    : `<tr><td colspan="4" class="empty">검색 결과가 없습니다</td></tr>`;
+}
+document.getElementById('q').addEventListener('input', render);
+document.getElementById('fGroup').addEventListener('change', render);
+render();
+</script>
+
+</body>
+</html>
