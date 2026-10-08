@@ -141,28 +141,63 @@
     .head-cta .btn{padding:9px 12px;font-size:13px;}
   }
 
-  /* ---------- 문의 모달 ---------- */
+  /* ---------- 문의 모달 (수파베이스 연결 · 2026-10-08) ---------- */
   [hidden]{display:none!important;}
-  .inq-back{position:fixed;inset:0;background:rgba(34,31,27,.5);display:flex;align-items:flex-start;justify-content:center;padding:6vh 16px;z-index:60;overflow-y:auto;}
-  .inq-modal{background:#fff;border-radius:16px;width:100%;max-width:520px;box-shadow:0 20px 55px rgba(0,0,0,.28);overflow:hidden;}
-  .inq-head{display:flex;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line);}
-  .inq-head h2{margin:0;font-size:18px;color:var(--brand);}
-  .inq-x{margin-left:auto;background:none;border:none;font-size:18px;color:var(--muted);cursor:pointer;padding:4px;line-height:1;}
-  .inq-body{padding:20px 22px 24px;display:flex;flex-direction:column;}
-  .inq-body label{font-size:12.5px;font-weight:700;color:#3A362F;margin:12px 0 6px;}
-  .inq-body label:first-of-type{margin-top:0;}
+  body.inq-open{overflow:hidden;}
+  .inq-back{position:fixed;inset:0;background:rgba(21,38,60,.55);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);display:flex;align-items:flex-start;justify-content:center;padding:5vh 16px;z-index:60;overflow-y:auto;}
+  .inq-modal{background:#FFFEFB;border-radius:20px;width:100%;max-width:560px;box-shadow:0 30px 80px rgba(10,24,44,.35);overflow:hidden;border:1px solid rgba(231,216,191,.8);animation:inqIn .22s ease-out;}
+  @keyframes inqIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .inq-head{position:relative;padding:26px 28px 22px;background:linear-gradient(135deg,#153356 0%,#1F5C99 100%);color:#fff;}
+  .inq-head .eyebrow-s{font-size:11px;letter-spacing:.2em;color:#CBB78F;font-weight:700;}
+  .inq-head h2{margin:6px 0 6px;font-family:"Noto Serif KR","Batang","Nanum Myeongjo",Georgia,serif;font-size:25px;font-weight:700;letter-spacing:-.01em;color:#fff;}
+  .inq-head p{margin:0;font-size:13.5px;color:#D5E1F0;line-height:1.6;}
+  .inq-x{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.14);border:none;font-size:15px;color:#fff;cursor:pointer;line-height:1;}
+  .inq-x:hover{background:rgba(255,255,255,.26);}
+  .inq-body{padding:24px 28px 28px;display:block;}
+  .inq-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .inq-field{margin-top:16px;}
+  .inq-row .inq-field{margin-top:0;}
+  .inq-row{margin-top:0;}
+  .inq-body label.l{display:block;font-size:13px;font-weight:700;color:#2E2A24;margin:0 0 7px;}
+  .inq-body label.l small{font-weight:400;color:var(--muted);margin-left:4px;}
+  .inq-body .req{color:#B3472F;}
   .inq-body input[type=text],.inq-body input[type=tel],.inq-body select,.inq-body textarea{
-    width:100%;border:1px solid #DCD7CC;border-radius:9px;padding:10px 12px;font-size:13.5px;font-family:inherit;color:var(--ink);background:#fff;}
-  .inq-body input:focus,.inq-body select:focus,.inq-body textarea:focus{outline:2px solid var(--brand-2);outline-offset:1px;border-color:transparent;}
-  .inq-body textarea{min-height:96px;resize:vertical;line-height:1.55;}
+    width:100%;border:1.5px solid #DDD6C8;border-radius:12px;padding:13px 14px;font-size:16px;font-family:inherit;color:var(--ink);background:#FDFCF9;transition:border-color .15s,box-shadow .15s,background .15s;}
+  .inq-body input:hover,.inq-body select:hover,.inq-body textarea:hover{border-color:#C9BFAB;}
+  .inq-body input:focus,.inq-body select:focus,.inq-body textarea:focus{outline:none;border-color:var(--brand-2);background:#fff;box-shadow:0 0 0 4px rgba(31,92,153,.13);}
+  .inq-body textarea{min-height:110px;resize:vertical;line-height:1.6;}
+  .inq-body .bad{border-color:#C0392B!important;background:#FFF6F4!important;}
+  .inq-err{display:none;margin-top:6px;font-size:12.5px;color:#B3261E;}
+  .inq-err.on{display:block;}
+  .inq-cnt{margin-top:5px;text-align:right;font-size:11.5px;color:var(--muted);}
   .inq-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden;}
-  .inq-agree{display:flex!important;align-items:flex-start;gap:8px;font-size:12px!important;font-weight:400!important;color:var(--muted);margin-top:16px!important;}
-  .inq-agree input{margin-top:2px;flex:none;}
-  .inq-submit{width:100%;justify-content:center;margin-top:18px;padding:12px;font-size:14.5px;}
-  .inq-submit:disabled{opacity:.6;cursor:default;}
-  .inq-msg{margin-top:14px;padding:11px 14px;border-radius:9px;font-size:13px;}
-  .inq-msg.ok{background:var(--ok-soft);color:#1F6E45;border:1px solid #C9E7D3;}
-  .inq-msg.err{background:#FDEEEC;color:#A8442F;border:1px solid #F3D3CD;}
+  .inq-agree{display:flex;align-items:flex-start;gap:12px;margin-top:20px;padding:15px 16px;border:1.5px solid #E7DFD0;border-radius:14px;background:#FBF8F1;cursor:pointer;}
+  .inq-agree.bad{border-color:#C0392B;background:#FFF6F4;}
+  .inq-agree input{width:21px;height:21px;margin-top:1px;flex:none;accent-color:#153356;cursor:pointer;}
+  .inq-agree span{font-size:12.8px;line-height:1.65;color:#4A443A;}
+  .inq-tag{display:none;margin-top:12px;font-size:11.5px;color:#8A8372;}
+  .inq-tag.on{display:block;}
+  .inq-submit{display:flex;width:100%;justify-content:center;align-items:center;margin-top:22px;padding:16px;font-size:16px;font-weight:700;letter-spacing:.02em;border:0;border-radius:14px;cursor:pointer;font-family:inherit;color:#fff;background:linear-gradient(135deg,#153356,#1F4F82);box-shadow:0 10px 24px rgba(21,51,86,.28);transition:transform .12s,box-shadow .12s;}
+  .inq-submit:hover{transform:translateY(-1px);box-shadow:0 14px 28px rgba(21,51,86,.34);}
+  .inq-submit:disabled{opacity:.65;cursor:wait;transform:none;}
+  .inq-msg{margin-top:14px;padding:12px 15px;border-radius:12px;font-size:13.5px;line-height:1.6;}
+  .inq-msg.err{background:#FDEEEC;color:#A8321F;border:1px solid #F3D3CD;}
+  .inq-note{margin-top:16px;text-align:center;font-size:12.5px;color:var(--muted);}
+  .inq-note a{color:var(--brand);font-weight:700;text-decoration:none;}
+  .inq-done{padding:44px 30px 38px;text-align:center;}
+  .inq-done .ck{width:64px;height:64px;margin:0 auto 18px;border-radius:50%;background:#E8F5EC;color:#2E8B57;display:flex;align-items:center;justify-content:center;font-size:32px;}
+  .inq-done h3{margin:0 0 8px;font-family:"Noto Serif KR","Batang",Georgia,serif;font-size:22px;color:var(--brand);}
+  .inq-done p{margin:0 0 20px;color:#5E574B;font-size:14.5px;line-height:1.75;}
+  .inq-done .btn{justify-content:center;}
+  @media (max-width:560px){
+    .inq-back{padding:0;align-items:flex-end;}
+    .inq-modal{border-radius:22px 22px 0 0;max-width:none;min-height:60vh;}
+    .inq-head{padding:22px 22px 18px;}
+    .inq-body{padding:20px 20px 26px;}
+    .inq-row{grid-template-columns:1fr;gap:0;}
+    .inq-row .inq-field{margin-top:16px;}
+    .inq-row .inq-field:first-child{margin-top:0;}
+  }
 </style>
 </head>
 <body>
@@ -360,7 +395,7 @@
   <div class="wrap">
     <div class="eyebrow">문의</div>
     <h2>무엇을 도와드릴까요</h2>
-    <p class="section-lead">전화·카톡·팩스로 흩어져 있던 문의를 한 곳에서 받습니다. 분류를 고르면 접수 화면이 열리고, 접수된 문의는 담당자가 확인 후 순서대로 연락드립니다.</p>
+    <p class="section-lead">전화·카톡·팩스로 흩어져 있던 문의를 한 곳에서 받습니다. 원하시는 항목의 버튼을 누르면 접수 화면이 열립니다. 접수된 문의는 담당자가 확인 후 순서대로 연락드립니다.</p>
     <div class="grid3">
       <div class="card">
         <div class="icn">📦</div>
@@ -442,102 +477,203 @@
 <div class="inq-back" id="inqModal" hidden>
   <div class="inq-modal" role="dialog" aria-modal="true" aria-labelledby="inqTitle">
     <div class="inq-head">
+      <div class="eyebrow-s">THE FINE WOOD</div>
       <h2 id="inqTitle">문의하기</h2>
+      <p>규격·수량·현장 일정을 남겨 주시면 신속하게 안내해 드리겠습니다.</p>
       <button class="inq-x" id="inqClose" type="button" aria-label="닫기">✕</button>
     </div>
 
-    <form class="inq-body" id="inqForm">
-      <label for="inqCategory">문의 분류</label>
-      <select id="inqCategory" name="category" required>
-        <option value="상품문의">상품문의 — 규격·가격·재고</option>
-        <option value="도면상담">도면상담 — 제작·시공 상담</option>
-        <option value="고객지원">고객지원 — A/S·배송·기타</option>
-      </select>
+    <form class="inq-body" id="inqForm" novalidate autocomplete="on">
+      <div class="inq-row">
+        <div class="inq-field">
+          <label class="l" for="inqName">이름 <span class="req">*</span></label>
+          <input id="inqName" name="name" type="text" maxlength="40" autocomplete="name" placeholder="홍길동">
+          <div class="inq-err" id="eName">이름을 입력해 주세요.</div>
+        </div>
+        <div class="inq-field">
+          <label class="l" for="inqPhone">연락처 <span class="req">*</span></label>
+          <input id="inqPhone" name="phone" type="tel" inputmode="numeric" maxlength="14" autocomplete="tel" placeholder="010-0000-0000">
+          <div class="inq-err" id="ePhone">숫자 9~11자리의 전화번호를 입력해 주세요.</div>
+        </div>
+      </div>
 
-      <label for="inqName">이름 *</label>
-      <input id="inqName" name="name" type="text" required maxlength="60" placeholder="예: 홍길동">
+      <div class="inq-field">
+        <label class="l" for="inqCompany">회사·현장명 <small>선택</small></label>
+        <input id="inqCompany" name="company" type="text" maxlength="60" placeholder="예: OO인테리어 / OO현장">
+      </div>
 
-      <label for="inqPhone">연락처 *</label>
-      <input id="inqPhone" name="phone" type="tel" required maxlength="40" placeholder="예: 010-0000-0000">
+      <div class="inq-field">
+        <label class="l" for="inqProduct">관심 제품 <small>선택</small></label>
+        <select id="inqProduct" name="product">
+          <option value="">선택하지 않음</option>
+          <option>목문짝·중문·연동도어 (제조·납품·시공)</option>
+          <option>내장재 (바닥재·벽장재·천정재·데크·합판·석고보드)</option>
+          <option>원목·하드우드·주문재</option>
+          <option>기능성 자재 (방염·불연·준불연·단열재·방음)</option>
+          <option>방부목·합성 데크</option>
+          <option>기타 (A/S·배송·세금계산서 등)</option>
+        </select>
+      </div>
 
-      <label for="inqCompany">회사 · 현장명</label>
-      <input id="inqCompany" name="company" type="text" maxlength="80" placeholder="예: OO인테리어 / OO현장 (선택)">
+      <div class="inq-field">
+        <label class="l" for="inqMessage">문의 내용 <small>선택</small></label>
+        <textarea id="inqMessage" name="message" maxlength="850" placeholder="규격·수량·현장 위치·필요한 날짜를 적어 주시면 더 빠르고 정확하게 안내해 드립니다."></textarea>
+        <div class="inq-cnt"><span id="inqCnt">0</span> / 850</div>
+      </div>
 
-      <label for="inqTitleInput">제목</label>
-      <input id="inqTitleInput" name="title" type="text" maxlength="100" placeholder="문의 내용을 한 줄로 요약해 주세요 (선택)">
-
-      <label for="inqMessage">문의 내용 *</label>
-      <textarea id="inqMessage" name="message" required maxlength="2000" placeholder="규격·수량·현장 상황 등을 최대한 자세히 적어주시면 더 빠르고 정확하게 답변드립니다."></textarea>
+      <div class="inq-field" id="inqSrcWrap">
+        <label class="l" for="inqSource">어디서 알고 오셨나요? <span class="req">*</span></label>
+        <select id="inqSource" name="source">
+          <option value="">선택해 주세요</option>
+          <option value="search">검색</option>
+          <option value="map">지도</option>
+          <option value="referral">지인 소개</option>
+          <option value="sns">SNS</option>
+          <option value="phone">전화</option>
+          <option value="other">기타</option>
+          <option value="unknown">모르겠음</option>
+        </select>
+        <div class="inq-err" id="eSource">알게 된 경로를 선택해 주세요.</div>
+      </div>
+      <div class="inq-tag" id="inqTag"></div>
 
       <input type="text" name="website" id="inqWebsite" class="inq-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-      <label class="inq-agree">
-        <input type="checkbox" id="inqAgree" name="agree" required>
-        <span>문의 답변을 위한 개인정보(이름·연락처) 수집·이용에 동의합니다. 문의 처리 완료 후 파기합니다. *</span>
+      <label class="inq-agree" id="inqAgreeBox">
+        <input type="checkbox" id="inqAgree" name="agree">
+        <span>[필수] 문의 응대 및 거래·하자보수 이력 관리를 위해 이름·연락처·문의 내용을 수집하며, 상담 종료 후 5년까지 보관합니다.</span>
       </label>
+      <div class="inq-err" id="eAgree">개인정보 수집·이용에 동의해 주세요.</div>
 
-      <div class="inq-msg" id="inqMsg" hidden></div>
+      <div class="inq-msg err" id="inqMsg" hidden></div>
 
-      <button class="btn btn-primary inq-submit" type="submit" id="inqSubmit">문의 접수하기</button>
+      <button class="inq-submit" type="submit" id="inqSubmit">문의 접수하기</button>
+      <div class="inq-note">급하시면 전화 주세요 · <a href="tel:031-994-2178">031-994-2178</a></div>
     </form>
+
+    <div class="inq-done" id="inqDone" hidden>
+      <div class="ck">✓</div>
+      <h3>문의가 접수되었습니다</h3>
+      <p>확인 후 순서대로 연락드리겠습니다.<br>급하신 경우 031-994-2178로 전화해 주세요.</p>
+      <button class="btn btn-primary" type="button" id="inqDoneClose">닫기</button>
+    </div>
   </div>
 </div>
 
 <script>
 (function(){
-  const API = '/api/inquiry';
-  const modal = document.getElementById('inqModal');
-  const form = document.getElementById('inqForm');
-  const msg = document.getElementById('inqMsg');
-  const submitBtn = document.getElementById('inqSubmit');
+  // 공개용(publishable) 키만 사용합니다. service_role / secret 키는 절대 넣지 않습니다.
+  // 새 문의는 수파베이스 inquiries 표에 쌓이고, 대표님 계정으로 로그인해야만 읽을 수 있습니다.
+  var SUPABASE_URL = 'https://axbhbrurriwujvmsbwhp.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_a6T_fmf7xjNKwHGkf1t0ow_43cFpIEi';
 
-  function openModal(category){
-    form.reset();
-    msg.hidden = true; msg.className = 'inq-msg';
-    if (category) document.getElementById('inqCategory').value = category;
-    modal.hidden = false;
-    document.getElementById('inqName').focus();
+  var SOURCES = {search:'검색',map:'지도',referral:'지인 소개',sns:'SNS',phone:'전화',other:'기타',unknown:'모르겠음'};
+  var PRESET = {'상품문의':'', '도면상담':'목문짝·중문·연동도어 (제조·납품·시공)', '고객지원':'기타 (A/S·배송·세금계산서 등)'};
+  var $ = function(id){ return document.getElementById(id); };
+  var modal = $('inqModal'), form = $('inqForm'), done = $('inqDone'), msg = $('inqMsg'), submitBtn = $('inqSubmit');
+  var lastFocus = null;
+
+  // 링크 꼬리표(?from=sns 등)가 있으면 경로를 자동 입력하고 선택칸은 숨깁니다.
+  var from = (new URLSearchParams(location.search).get('from') || '').toLowerCase();
+  var tagged = Object.prototype.hasOwnProperty.call(SOURCES, from) ? from : '';
+  if (tagged) {
+    $('inqSource').value = tagged;
+    $('inqSrcWrap').hidden = true;
+    $('inqTag').textContent = '링크 꼬리표로 입력됨: ' + SOURCES[tagged];
+    $('inqTag').classList.add('on');
   }
-  function closeModal(){ modal.hidden = true; }
+
+  function digits(v){
+    var d = String(v).replace(/\D/g,'');
+    if (d.indexOf('82') === 0 && d.length >= 11 && d.charAt(2) !== '0') d = '0' + d.slice(2);
+    return d;
+  }
+  function pretty(d){
+    if (d.length <= 3) return d;
+    if (d.length <= 7) return d.slice(0,3) + '-' + d.slice(3);
+    if (d.length <= 10) return d.slice(0,3) + '-' + d.slice(3,6) + '-' + d.slice(6);
+    return d.slice(0,3) + '-' + d.slice(3,7) + '-' + d.slice(7,11);
+  }
+  $('inqPhone').addEventListener('input', function(){ var d = digits(this.value).slice(0,11); this.value = pretty(d); });
+  $('inqMessage').addEventListener('input', function(){ $('inqCnt').textContent = this.value.length; });
+
+  function mark(el, bad, errId){ el.classList.toggle('bad', bad); if (errId) $(errId).classList.toggle('on', bad); }
+  function reset(){
+    form.reset(); msg.hidden = true;
+    ['inqName','inqPhone','inqSource'].forEach(function(i){ $(i).classList.remove('bad'); });
+    $('inqAgreeBox').classList.remove('bad');
+    ['eName','ePhone','eSource','eAgree'].forEach(function(i){ $(i).classList.remove('on'); });
+    $('inqCnt').textContent = '0';
+    if (tagged) $('inqSource').value = tagged;
+    form.hidden = false; done.hidden = true;
+    $('inqTitle').parentNode.hidden = false;
+  }
+  function openModal(hint){
+    lastFocus = document.activeElement;
+    reset();
+    if (hint && Object.prototype.hasOwnProperty.call(PRESET, hint)) $('inqProduct').value = PRESET[hint];
+    modal.hidden = false; document.body.classList.add('inq-open');
+    setTimeout(function(){ $('inqName').focus(); }, 60);
+  }
+  function closeModal(){ modal.hidden = true; document.body.classList.remove('inq-open'); if (lastFocus && lastFocus.focus) lastFocus.focus(); }
 
   document.querySelectorAll('[data-open-inquiry]').forEach(function(btn){
     btn.addEventListener('click', function(){ openModal(btn.getAttribute('data-open-inquiry')); });
   });
-  document.getElementById('inqClose').addEventListener('click', closeModal);
-  modal.addEventListener('click', function(e){ if (e.target === modal) closeModal(); });
+  $('inqClose').addEventListener('click', closeModal);
+  $('inqDoneClose').addEventListener('click', closeModal);
+  modal.addEventListener('mousedown', function(e){ if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !modal.hidden) closeModal(); });
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    const payload = {
-      category: document.getElementById('inqCategory').value,
-      name: document.getElementById('inqName').value.trim(),
-      phone: document.getElementById('inqPhone').value.trim(),
-      company: document.getElementById('inqCompany').value.trim(),
-      title: document.getElementById('inqTitleInput').value.trim(),
-      message: document.getElementById('inqMessage').value.trim(),
-      agree: document.getElementById('inqAgree').checked,
-      website: document.getElementById('inqWebsite').value
-    };
+    msg.hidden = true;
+    var name = $('inqName').value.trim();
+    var phone = digits($('inqPhone').value);
+    var source = tagged || $('inqSource').value;
+    var consent = $('inqAgree').checked;
+
+    var badName = name.length < 1 || name.length > 40;
+    var badPhone = !/^[0-9]{9,11}$/.test(phone);
+    var badSource = !tagged && !source;
+    mark($('inqName'), badName, 'eName');
+    mark($('inqPhone'), badPhone, 'ePhone');
+    if (!tagged) mark($('inqSource'), badSource, 'eSource');
+    $('inqAgreeBox').classList.toggle('bad', !consent);
+    $('eAgree').classList.toggle('on', !consent);
+    if (badName || badPhone || badSource || !consent) {
+      var first = form.querySelector('input.bad, select.bad, .inq-agree.bad');
+      if (first && first.scrollIntoView) first.scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+    if ($('inqWebsite').value) { form.hidden = true; $('inqTitle').parentNode.hidden = true; done.hidden = false; return; } // 자동 입력 방지칸
+
+    var company = $('inqCompany').value.trim();
+    var text = $('inqMessage').value.trim();
+    var message = (company ? '[회사·현장] ' + company + '\n' : '') + text;
+    var payload = { name: name, phone: phone, product: $('inqProduct').value || null, message: message || null, source: source, consent: true };
+
     submitBtn.disabled = true; submitBtn.textContent = '접수하는 중…';
-    fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-      .then(function(r){ return r.json().then(function(j){ return { ok: r.ok, body: j }; }); })
-      .then(function(res){
-        if (res.ok && res.body.ok) {
-          msg.hidden = false; msg.className = 'inq-msg ok';
-          msg.textContent = '문의가 접수됐습니다. 순서대로 확인 후 연락드리겠습니다.';
-          form.reset();
-          setTimeout(closeModal, 1800);
-        } else {
-          msg.hidden = false; msg.className = 'inq-msg err';
-          msg.textContent = (res.body && res.body.error) || '접수 중 문제가 발생했습니다. 잠시 후 다시 시도해 주세요.';
-        }
-      })
-      .catch(function(){
-        msg.hidden = false; msg.className = 'inq-msg err';
-        msg.textContent = '연결에 실패했습니다. 전화(031-994-2178)로 문의해 주세요.';
-      })
-      .finally(function(){ submitBtn.disabled = false; submitBtn.textContent = '문의 접수하기'; });
+    fetch(SUPABASE_URL + '/rest/v1/inquiries', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify(payload)
+    }).then(function(r){
+      if (r.status === 201) {
+        form.hidden = true; $('inqTitle').parentNode.hidden = true; done.hidden = false;
+        modal.scrollTop = 0;
+      } else {
+        return r.text().then(function(t){
+          msg.hidden = false;
+          msg.textContent = '접수하지 못했습니다 (상태 ' + r.status + '). 잠시 후 다시 시도하시거나 031-994-2178로 전화해 주세요. ' + t.slice(0,120);
+        });
+      }
+    }).catch(function(){
+      msg.hidden = false;
+      msg.textContent = '연결에 실패했습니다. 031-994-2178로 전화해 주세요.';
+    }).finally(function(){
+      submitBtn.disabled = false; submitBtn.textContent = '문의 접수하기';
+    });
   });
 })();
 </script>
