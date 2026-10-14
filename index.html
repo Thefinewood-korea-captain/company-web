@@ -198,6 +198,21 @@
     .inq-row .inq-field{margin-top:16px;}
     .inq-row .inq-field:first-child{margin-top:0;}
   }
+
+  /* ---- 문의창 휴대폰 화면 틀 보정 (2026-10-14): 화면 전체 + 안쪽 스크롤, 키보드 대응 ---- */
+  body.inq-open{position:fixed;left:0;right:0;width:100%;}
+  @media (max-width:560px){
+    .inq-back{display:block;padding:0;overflow:hidden;}
+    .inq-modal{position:absolute;left:0;right:0;top:0;bottom:0;width:100%;max-width:none;min-height:0;height:100%;border-radius:0;border:0;box-shadow:none;display:flex;flex-direction:column;overflow:hidden;animation:none;}
+    .inq-head{flex:none;padding:14px 54px 12px 18px;}
+    .inq-head .eyebrow-s{font-size:10px;}
+    .inq-head h2{font-size:20px;margin:2px 0 2px;}
+    .inq-head p{font-size:12.5px;line-height:1.5;}
+    .inq-x{top:10px;right:10px;}
+    .inq-body{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:16px 16px 40px;}
+    .inq-done{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+    .inq-body textarea{min-height:96px;}
+  }
 </style>
 </head>
 <body>
@@ -608,14 +623,45 @@
     form.hidden = false; done.hidden = true;
     $('inqTitle').parentNode.hidden = false;
   }
+  // ---- 휴대폰 화면 맞춤: 키보드가 올라와도 입력칸이 가려지지 않게, 뒤쪽 화면이 같이 움직이지 않게 ----
+  var box = modal.querySelector('.inq-modal');
+  var pageY = 0;
+  function isMobile(){ return window.innerWidth <= 560; }
+  function fit(){
+    if (!box) return;
+    var vv = window.visualViewport;
+    if (!isMobile() || !vv) { box.style.height = ''; box.style.top = ''; box.style.bottom = ''; return; }
+    box.style.height = vv.height + 'px';   // 키보드를 뺀 보이는 높이
+    box.style.top = vv.offsetTop + 'px';
+    box.style.bottom = 'auto';
+  }
+  function onVV(){ if (!modal.hidden) fit(); }
+  if (window.visualViewport) { window.visualViewport.addEventListener('resize', onVV); window.visualViewport.addEventListener('scroll', onVV); }
+  window.addEventListener('resize', onVV);
+  // 입력칸을 누르면 키보드가 올라온 뒤 그 칸이 화면 가운데에 오도록 합니다.
+  form.addEventListener('focusin', function(e){
+    var t = e.target;
+    if (!t || !/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName) || !isMobile()) return;
+    setTimeout(function(){ try { t.scrollIntoView({block:'center'}); } catch (x) { try { t.scrollIntoView(); } catch (y) {} } }, 350);
+  });
+
   function openModal(hint){
     lastFocus = document.activeElement;
     reset();
     if (hint && Object.prototype.hasOwnProperty.call(PRESET, hint)) $('inqProduct').value = PRESET[hint];
+    pageY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    document.body.style.top = (-pageY) + 'px';          // 뒤쪽 홈페이지 위치를 고정
     modal.hidden = false; document.body.classList.add('inq-open');
-    setTimeout(function(){ $('inqName').focus(); }, 60);
+    fit();
+    // 휴대폰에서는 열자마자 키보드가 올라와 화면을 가리지 않도록 자동 선택을 하지 않습니다.
+    if (!isMobile()) setTimeout(function(){ $('inqName').focus(); }, 60);
   }
-  function closeModal(){ modal.hidden = true; document.body.classList.remove('inq-open'); if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+  function closeModal(){
+    modal.hidden = true; document.body.classList.remove('inq-open');
+    document.body.style.top = ''; window.scrollTo(0, pageY);
+    if (box) { box.style.height = ''; box.style.top = ''; box.style.bottom = ''; }
+    if (lastFocus && lastFocus.focus) { try { lastFocus.focus({preventScroll:true}); } catch (x) { lastFocus.focus(); } }
+  }
 
   document.querySelectorAll('[data-open-inquiry]').forEach(function(btn){
     btn.addEventListener('click', function(){ openModal(btn.getAttribute('data-open-inquiry')); });
