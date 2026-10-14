@@ -625,7 +625,7 @@
   modal.addEventListener('mousedown', function(e){ if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !modal.hidden) closeModal(); });
 
-  form.addEventListener('submit', function(e){
+  function onSubmit(e){
     e.preventDefault();
     msg.hidden = true;
     var name = $('inqName').value.trim();
@@ -642,8 +642,16 @@
     $('inqAgreeBox').classList.toggle('bad', !consent);
     $('eAgree').classList.toggle('on', !consent);
     if (badName || badPhone || badSource || !consent) {
+      // 어떤 항목이 비었는지 버튼 바로 아래에도 알려 줍니다(화면이 위쪽 칸으로 넘어가지 않는 환경 대비).
+      var miss = [];
+      if (badName) miss.push('이름');
+      if (badPhone) miss.push('연락처(숫자 9~11자리)');
+      if (badSource) miss.push('어디서 알고 오셨나요');
+      if (!consent) miss.push('개인정보 수집·이용 동의');
+      msg.hidden = false;
+      msg.textContent = '입력이 필요한 항목이 있습니다: ' + miss.join(', ');
       var first = form.querySelector('input.bad, select.bad, .inq-agree.bad');
-      if (first && first.scrollIntoView) first.scrollIntoView({behavior:'smooth', block:'center'});
+      try { if (first && first.scrollIntoView) first.scrollIntoView({behavior:'smooth', block:'center'}); } catch (se) { if (first) first.scrollIntoView(); }
       return;
     }
     if ($('inqWebsite').value) { form.hidden = true; $('inqTitle').parentNode.hidden = true; done.hidden = false; return; } // 자동 입력 방지칸
@@ -654,26 +662,37 @@
     var payload = { name: name, phone: phone, product: $('inqProduct').value || null, message: message || null, source: source, consent: true };
 
     submitBtn.disabled = true; submitBtn.textContent = '접수하는 중…';
-    fetch(SUPABASE_URL + '/rest/v1/inquiries', {
-      method: 'POST',
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
-      body: JSON.stringify(payload)
-    }).then(function(r){
-      if (r.status === 201) {
+    function finish(){ submitBtn.disabled = false; submitBtn.textContent = '문의 접수하기'; }
+    function fail(text){ msg.hidden = false; msg.textContent = text; finish(); }
+    var HELP = ' 크롬이나 삼성인터넷에서 열어 다시 시도하시거나 031-994-2178로 전화해 주세요.';
+    // 카카오톡·네이버 앱 등 인앱 브라우저에서도 동작하도록 XMLHttpRequest를 사용합니다.
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', SUPABASE_URL + '/rest/v1/inquiries', true);
+    xhr.setRequestHeader('apikey', SUPABASE_KEY);
+    xhr.setRequestHeader('Authorization', 'Bearer ' + SUPABASE_KEY);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Prefer', 'return=minimal');
+    xhr.timeout = 20000;
+    xhr.onload = function(){
+      if (xhr.status === 201) {
         form.hidden = true; $('inqTitle').parentNode.hidden = true; done.hidden = false;
-        modal.scrollTop = 0;
+        modal.scrollTop = 0; finish();
       } else {
-        return r.text().then(function(t){
-          msg.hidden = false;
-          msg.textContent = '접수하지 못했습니다 (상태 ' + r.status + '). 잠시 후 다시 시도하시거나 031-994-2178로 전화해 주세요. ' + t.slice(0,120);
-        });
+        fail('접수하지 못했습니다 (상태 ' + xhr.status + ').' + HELP);
       }
-    }).catch(function(){
+    };
+    xhr.onerror = function(){ fail('연결에 실패했습니다.' + HELP); };
+    xhr.ontimeout = function(){ fail('응답이 늦어 접수를 확인하지 못했습니다.' + HELP); };
+    xhr.send(JSON.stringify(payload));
+  }
+  form.addEventListener('submit', function(e){
+    try { onSubmit(e); }
+    catch (err) {
+      e.preventDefault();
       msg.hidden = false;
-      msg.textContent = '연결에 실패했습니다. 031-994-2178로 전화해 주세요.';
-    }).finally(function(){
+      msg.textContent = '처리 중 오류가 났습니다 (' + (err && err.message ? err.message : '알 수 없음') + '). 크롬이나 삼성인터넷에서 열어 다시 시도하시거나 031-994-2178로 전화해 주세요.';
       submitBtn.disabled = false; submitBtn.textContent = '문의 접수하기';
-    });
+    }
   });
 })();
 </script>
